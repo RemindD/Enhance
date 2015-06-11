@@ -90,8 +90,9 @@ int main()
         sampSize = endianSwap2int(sampSize);
         sampSize /= 4;
         parmKind = endianSwap2int(parmKind);
-        //fscanf(myfile,"%d%d%d%d",&nSample,&sampPeriod,&sampSize,&parmKind);
+        
         printf("%d\n%d\n%d\n%d\n",nSample,sampPeriod,sampSize,parmKind);
+        
         float **Feature;
         int i,j;
         Feature = (float**)malloc(sizeof(float*)*nSample);
