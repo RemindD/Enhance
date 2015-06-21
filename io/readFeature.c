@@ -113,7 +113,7 @@ static int readFeature(lua_State *L)
 	fclose(myfile);
 	lua_pushnumber(L, nSample);
 	lua_pushnumber(L, sampSize);
-	lua_pushnumber(L, Feature)
+	//lua_pushnumber(L, Feature)
 	
 	return 2;
 }
