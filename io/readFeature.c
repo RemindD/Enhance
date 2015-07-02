@@ -74,6 +74,8 @@ static int readFeature(lua_State *L)
 {
 	const char  *name = luaL_checkstring(L, 1);
 
+	lua_newtable(L);
+
 	FILE *myfile;
 	
 	int nSample,sampPeriod;
@@ -105,17 +107,23 @@ static int readFeature(lua_State *L)
 	for (i=0;i<nSample * sampSize;++i) 
 	{
 			fread(&Feature[i],4,1,myfile);
-			Feature[i] = endianSwap4float(Feature[i]);						
+			Feature[i] = endianSwap4float(Feature[i]);
+			lua_pushnumber(L, i);
+			lua_pushnumber(L, Feature[i]);
+			lua_settable(L, -3);					
 	}	
 	//THStorage THFeat = THStorage_(newWithData)(Feature, nSample * sampSize);
 	//THFeature = THTensor_(newWithStorage)(THFeat);
 
 	fclose(myfile);
+	lua_pushstring(L, "nSample");
 	lua_pushnumber(L, nSample);
+	lua_settable(L, -3);
+	lua_pushstring(L, "sampSize");
 	lua_pushnumber(L, sampSize);
-	//lua_pushnumber(L, Feature)
+	lua_settable(L, -3);
 	
-	return 2;
+	return 1;
 }
 
 static const struct luaL_Reg lib[] = {
