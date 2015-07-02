@@ -1,8 +1,8 @@
 require 'readHTK'
 require 'torch'
 
-iptfile  = "440c020r.fbank"
-optfile = 
+iptfile = "440c020r.fbank"
+optfile = "440c020r.t7"
 Feature = readHTK.readFeature(file)
 nSample = Feature['nSample']
 sampSize = Feature['sampSize']
@@ -12,3 +12,4 @@ for i = 0, nSample-1 do
 		t[i+1][j+1] = Feature[i * sampSize + j]
 	end
 end
+torch.save(optfile, t)
