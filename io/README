@@ -1,1 +1,3 @@
 Create dynamic link library: gcc  FILE.c -fPIC -shared -o lib.so
+
+ConvertFile.lua : Convert HTK files to Torch7 format. Data are stored in a nSample * sampSize Torch tensor.
